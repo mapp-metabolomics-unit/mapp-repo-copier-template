@@ -52,12 +52,20 @@ repository_name:
   when: false
 
 
-github_username:
+user_provided_github_username:
   type: str
   help: What is your GitHub username?
   default: mapp-metabolomics-unit
   required: true
   when: "{{run_setup}}"
+
+github_username:
+  type: str
+  # computed value for the GitHub username from
+  # either the previously recorded answer
+  # or the answer the user just provided during setup
+  default: "{{recorded_github_username or user_provided_github_username}}"
+  when: false
 
 
 _tasks:
