@@ -2,6 +2,10 @@
 
 echo "Starting Git initialization script..."
 
+# Print variables for debugging
+echo "GitHub Username: {{ github_username }}"
+echo "Repository Name: {{ repository_name }}"
+
 # Initialize git repository
 git init
 if [ $? -ne 0 ]; then
@@ -11,7 +15,7 @@ fi
 echo "Git repository initialized."
 
 # Add remote origin
-git remote add origin https://github.com/{{ github_username }}/{{ repository_name }}.git
+git remote add origin "https://github.com/{{ github_username }}/{{ repository_name }}.git"
 if [ $? -ne 0 ]; then
     echo "Failed to add remote origin"
     exit 1
