@@ -6,25 +6,31 @@ echo "Starting Git initialization script..."
 echo "GitHub Username: {{ github_username }}"
 echo "Repository Name: {{ repository_name }}"
 
-# Initialize git repository
-git init
-if [ $? -ne 0 ]; then
-    echo "Failed to initialize git repository"
-    exit 1
-fi
-echo "Git repository initialized."
+if [ "$STAGE" = "task" ]; then
+  echo "Running in task stage, skipping Git initialization and remote addition."
+else
+  # Initialize git repository only during initial generation
+  git init
+  if [ $? -ne 0 ]; then
+      echo "Failed to initialize git repository"
+      exit 1
+  fi
+  echo "Git repository initialized."
 
-# Add remote origin
-git remote add origin "https://github.com/{{ github_username }}/{{ repository_name }}.git"
-if [ $? -ne 0 ]; then
-    echo "Failed to add remote origin"
-    exit 1
+  # Add remote origin only during initial generation
+  git remote add origin "https://github.com/{{ github_username }}/{{ repository_name }}.git"
+  if [ $? -ne 0 ]; then
+      echo "Failed to add remote origin"
+      exit 1
+  fi
+  echo "Remote origin added."
 fi
-echo "Remote origin added."
 
-# Pull the latest changes from remote
-git fetch origin
-git reset --soft origin/main
+# Pull the latest changes from remote if it's an update
+if [ "$STAGE" = "update" ]; then
+  git fetch origin
+  git reset --soft origin/main
+fi
 
 # Add all files to git
 git add .
