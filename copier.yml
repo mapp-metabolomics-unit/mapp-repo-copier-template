@@ -1,38 +1,37 @@
 # copier.yml
 
 author:
-    type: str
-    help: What is your project name?
-    default: MAPP Metabolomics Unit
-    required: true
+  type: str
+  help: What is your project name?
+  default: MAPP Metabolomics Unit
+  required: true
 
 email:
-    type: str
-    help: What is your email?
-    default: pierre-marie.allard@unifr.ch
-    required: true
+  type: str
+  help: What is your email?
+  default: pierre-marie.allard@unifr.ch
+  required: true
 
 github_username:
-    type: str
-    help: What is your GitHub username?
-    default: your-github-username
-    required: true
+  type: str
+  help: What is your GitHub username?
+  default: your-github-username
+  required: true
 
 repository_name:
-    type: str
-    help: The name of the repository on GitHub. Should be lowercase and dash-separated.
-    default: johnny-watanabe-group
-    validator: >-
-        {% if not (repository_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
-        repository_name must start with a letter, followed by one or more letters, digits, or dashes all lowercase.
-        {% endif %}
+  type: str
+  help: The name of the repository on GitHub. Should be lowercase and dash-separated.
+  default: johnny-watanabe-group
+  validator: >-
+    {% if not (repository_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
+    repository_name must start with a letter, followed by one or more letters, digits, or dashes all lowercase.
+    {% endif %}
 
 module_name:
-    type: str
-    help: What is your Python module name?
-    default: mymodule
+  type: str
+  help: What is your Python module name?
+  default: mymodule
 
 _tasks:
-  - shell: |
-      ./post_gen_project.sh
-    when: "{{ _copier_conf['answers_file'] | length > 0 }}"
+  - "chmod +x post_gen_project.sh"
+  - "./post_gen_project.sh"
