@@ -51,7 +51,6 @@ repository_name:
   default: "{{recorded_repository_name or user_provide_repository_name}}"
   when: false
 
-
 user_provided_github_username:
   type: str
   help: What is your GitHub username?
@@ -67,32 +66,32 @@ github_username:
   default: "{{recorded_github_username or user_provided_github_username}}"
   when: false
 
-user_provide_mapp_project:
-  type: str
-  help: The name of the project in the MAPP Metabolomics Unit.
-  default: mapp_project_00001
+# user_provide_mapp_project:
+#   type: str
+#   help: The name of the project in the MAPP Metabolomics Unit.
+#   default: mapp_project_00001
 
-mapp_project:
-  type: str
-  # computed value for the MAPP project name from
-  # either the previously recorded answer
-  # or the answer the user just provided during setup
-  default: "{{recorded_mapp_project_name or user_provide_mapp_project_name}}"
-  when: false
+# mapp_project:
+#   type: str
+#   # computed value for the MAPP project name from
+#   # either the previously recorded answer
+#   # or the answer the user just provided during setup
+#   default: "{{recorded_mapp_project_name or user_provide_mapp_project_name}}"
+#   when: false
 
-user_provided_mapp_batch:
-  type: str
-  help: The name of the batch in the MAPP Metabolomics Unit.
-  default: mapp_batch_00001
+# user_provided_mapp_batch:
+#   type: str
+#   help: The name of the batch in the MAPP Metabolomics Unit.
+#   default: mapp_batch_00001
 
 
-mapp_batch:
-  type: str
-  # computed value for the MAPP batch name from
-  # either the previously recorded answer
-  # or the answer the user just provided during setup
-  default: "{{recorded_mapp_batch_name or user_provided_mapp_batch_name}}"
-  when: false
+# mapp_batch:
+#   type: str
+#   # computed value for the MAPP batch name from
+#   # either the previously recorded answer
+#   # or the answer the user just provided during setup
+#   default: "{{recorded_mapp_batch_name or user_provided_mapp_batch_name}}"
+#   when: false
 
 
 _tasks:
