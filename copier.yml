@@ -15,7 +15,7 @@ email:
 github_username:
     type: str
     help: What is your GitHub username?
-    default: mapp-metabolomics-unit
+    default: your-github-username
     required: true
 
 repository_name:
@@ -33,5 +33,6 @@ module_name:
     default: mymodule
 
 _tasks:
-  - shell: "./post_gen_project.sh"
+  - shell: |
+      ./post_gen_project.sh
     when: "{{ _copier_conf['answers_file'] | length > 0 }}"
