@@ -7,9 +7,10 @@ run_setup:
 
 author:
   type: str
-  help: What is your project name?
+  help: Who created this repo?
   default: MAPP Metabolomics Unit
   required: true
+  when: "{{run_setup}}"
 
 email:
   type: str
@@ -23,10 +24,7 @@ github_username:
   help: What is your GitHub username?
   default: mapp-metabolomics-unit
   required: true
-
-message:
-  # just a regular question for comparision
-  type: str
+  when: "{{run_setup}}"
 
 repository_name:
   type: str
@@ -36,19 +34,15 @@ repository_name:
     {% if not (repository_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
     repository_name must start with a letter, followed by one or more letters, digits, or dashes all lowercase.
     {% endif %}
-
-module_name:
-  type: str
-  help: What is your Python module name?
-  default: mymodule
-
+  required: true
+  when: "{{run_setup}}"
 
 _tasks:
   - chmod +x ./project_init.sh
-  - chmod +x ./project_pull.sh
+  - chmod +x ./project_update.sh
   - >-
     {% if run_setup %}
     ./project_init.sh
     {% else %}
-    ./project_pull.sh
+    ./project_update.sh
     {% endif %}
