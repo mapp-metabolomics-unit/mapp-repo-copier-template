@@ -31,3 +31,7 @@ module_name:
     type: str
     help: What is your Python module name?
     default: mymodule
+
+_tasks:
+  - shell: ./post_gen_project.sh
+    when: "{{ _copier_conf['answers_file'] | length > 0 }}"
