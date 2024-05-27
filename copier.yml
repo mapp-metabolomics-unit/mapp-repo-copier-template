@@ -1,5 +1,5 @@
+# copier.yml
 
-# questions
 author:
     type: str
     help: What is your project name?
@@ -12,15 +12,41 @@ email:
     default: pierre-marie.allard@unifr.ch
     required: true
 
+github_username:
+    type: str
+    help: What is your GitHub username?
+    default: your-github-username
+    required: true
+
 repository_name:
-    type: str # Any value will be treated raw as a string
-    help: The name of the repository on GitHub. should be lowercase and dash-separated
+    type: str
+    help: The name of the repository on GitHub. Should be lowercase and dash-separated.
     default: johny-watanabe-group
     validator: >-
         {% if not (repository_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
-        repository_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
+        repository_name must start with a letter, followed by one or more letters, digits, or dashes all lowercase.
         {% endif %}
+
+repository_name_stylized:
+    type: str
+    help: The stylized name of the repository.
+    default: "{{ repository_name | stylize }}"
+    required: true
 
 module_name:
     type: str
     help: What is your Python module name?
+    default: mymodule
+
+# Define custom Jinja2 filters
+jinja_extensions:
+  - jinja2.ext.do
+  - jinja2.ext.loopcontrols
+  - custom_stylize
+
+# Custom filter definition
+_filters:
+  stylize:
+    callable: >
+      def stylize(name):
+          return ' '.join([word.capitalize() for word in name.split('-')])
