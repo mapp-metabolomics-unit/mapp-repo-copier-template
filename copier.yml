@@ -33,5 +33,5 @@ module_name:
   default: mymodule
 
 _tasks:
-  - "chmod +x .project_init.sh"
+  - "chmod +x project_init.sh"
   - "./project_init.sh"
