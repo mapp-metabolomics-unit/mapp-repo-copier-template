@@ -19,6 +19,19 @@ email:
   required: true
   when: "{{run_setup}}"
 
+user_provided_year_of_creation:
+  type: str
+  help: When was the project created?
+  when: "{{run_setup}}"
+
+year_of_creation:
+  type: str
+  # computed value for the year of creation from
+  # either the previously recorded answer
+  # or the answer the user just provided during setup
+  default: "{{recorded_year_of_creation or user_provided_year_of_creation}}"
+  when: false
+  
 github_username:
   type: str
   help: What is your GitHub username?
