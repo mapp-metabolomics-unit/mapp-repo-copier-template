@@ -6,10 +6,10 @@ echo "Starting Git initialization script..."
 echo "GitHub Username: {{ github_username }}"
 echo "Repository Name: {{ repository_name }}"
 
-if [ "$STAGE" = "task" ]; then
-  echo "Running in task stage, skipping Git initialization and remote addition."
+if [ -d .git ]; then
+  echo "Repository already initialized, skipping Git initialization and remote addition."
 else
-  # Initialize git repository only during initial generation
+  # Initialize git repository only if not already initialized
   git init
   if [ $? -ne 0 ]; then
       echo "Failed to initialize git repository"
@@ -17,7 +17,7 @@ else
   fi
   echo "Git repository initialized."
 
-  # Add remote origin only during initial generation
+  # Add remote origin only if not already added
   git remote add origin "https://github.com/{{ github_username }}/{{ repository_name }}.git"
   if [ $? -ne 0 ]; then
       echo "Failed to add remote origin"
