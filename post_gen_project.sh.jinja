@@ -53,7 +53,12 @@ fi
 if [ "$STAGE" = "update" ]; then
   # Pull the latest changes from remote if it's an update
   git fetch origin
-  git reset --soft origin/main
+  git merge origin/main
+  if [ $? -ne 0 ]; then
+      echo "Failed to merge changes from remote"
+      exit 1
+  fi
+  echo "Merged changes from remote."
 
   # Add all files to git
   git add .
