@@ -1,3 +1,43 @@
 #!/bin/bash
 
-echo "This is an update. Won't do anything."
+echo "This is an update. Will pull the latest changes from the remote repository."
+
+# Check if this is an update or initial creation
+if [ -d ".git" ]; then
+echo ".git directory exists. Performing update operations."
+# Pull the latest changes from remote if it's an update
+git fetch origin
+git merge origin/main
+if [ $? -ne 0 ]; then
+    echo "Failed to merge changes from remote"
+    exit 1
+fi
+echo "Merged changes from remote."
+
+# Add all files to git
+git add .
+if [ $? -ne 0 ]; then
+    echo "Failed to add files to git"
+    exit 1
+fi
+echo "Files added to git."
+
+# Commit the changes
+git commit -m "Update from template"
+if [ $? -ne 0 ]; then
+    echo "Failed to commit changes"
+    exit 1
+fi
+echo "Changes committed."
+
+# Push to the remote repository
+git push -u origin main
+if [ $? -ne 0 ]; then
+    echo "Failed to push to remote repository"
+    exit 1
+fi
+echo "Pushed to remote repository."
+else
+echo "Error: .git directory does not exist during update."
+exit 1
+fi

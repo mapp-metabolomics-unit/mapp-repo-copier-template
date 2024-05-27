@@ -44,7 +44,8 @@ module_name:
 
 
 _tasks:
-  - chmod +x project_init.sh
+  - chmod +x ./project_init.sh
+  - chmod +x ./project_pull.sh
   - >-
     {% if run_setup %}
     ./project_init.sh
