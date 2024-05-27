@@ -31,7 +31,27 @@ year_of_creation:
   # or the answer the user just provided during setup
   default: "{{recorded_year_of_creation or user_provided_year_of_creation}}"
   when: false
-  
+
+user_provide_repository_name:
+  type: str
+  help: The name of the repository on GitHub. Should be lowercase and dash-separated.
+  default: johnny-watanabe-group
+  when: "{{run_setup}}"
+  validator: >-
+    {% if not (repository_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
+    repository_name must start with a letter, followed by one or more letters, digits, or dashes all lowercase.
+    {% endif %}
+  required: true
+
+repository_name:
+  type: str
+  # computed value for the repository name from
+  # either the previously recorded answer
+  # or the answer the user just provided during setup
+  default: "{{recorded_repository_name or user_provide_repository_name}}"
+  when: false
+
+
 github_username:
   type: str
   help: What is your GitHub username?
@@ -39,16 +59,6 @@ github_username:
   required: true
   when: "{{run_setup}}"
 
-repository_name:
-  type: str
-  help: The name of the repository on GitHub. Should be lowercase and dash-separated.
-  default: johnny-watanabe-group
-  validator: >-
-    {% if not (repository_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
-    repository_name must start with a letter, followed by one or more letters, digits, or dashes all lowercase.
-    {% endif %}
-  required: true
-  when: "{{run_setup}}"
 
 _tasks:
   - chmod +x ./project_init.sh
