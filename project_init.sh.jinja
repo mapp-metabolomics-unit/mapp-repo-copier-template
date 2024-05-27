@@ -5,15 +5,6 @@ echo "Starting project initialization script..."
 # we print the PWD to see if we are in /tmp/ or not
 echo "Current working directory: $PWD"
 
-if [[ $PWD == /tmp* ]]; then
-    echo "We are in /tmp/. This is copier update. Exiting."
-    exit 0
-fi
-
-if [ -d .git/ ]; then
-  echo "This project is already initialized. Exiting."
-  exit 0
-fi
 
 # Initialize git repository only if not already initialized
 git init

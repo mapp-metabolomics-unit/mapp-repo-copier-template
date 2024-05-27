@@ -24,7 +24,6 @@ github_username:
   default: mapp-metabolomics-unit
   required: true
 
-  
 message:
   # just a regular question for comparision
   type: str
@@ -42,3 +41,12 @@ module_name:
   type: str
   help: What is your Python module name?
   default: mymodule
+
+_tasks:
+  - >-
+      {% if {{run_setup}} == false %}
+      chmod +x project_init.sh
+      ./project_init.sh
+      {% elif {{run_setup}} == true %}
+      ./project_pull.sh
+      {% endif %}
