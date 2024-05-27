@@ -15,7 +15,7 @@ email:
 github_username:
   type: str
   help: What is your GitHub username?
-  default: your-github-username
+  default: mapp-metabolomics-unit
   required: true
 
 repository_name:
