@@ -1,4 +1,9 @@
 # copier.yml
+run_setup:
+  # computed value to determine whether to prompt the setup questions
+  type: bool
+  default: "{{recorded_setup is not defined or recorded_setup is false}}"
+  when: false
 
 author:
   type: str
@@ -11,12 +16,18 @@ email:
   help: What is your email?
   default: pierre-marie.allard@unifr.ch
   required: true
+  when: "{{run_setup}}"
 
 github_username:
   type: str
   help: What is your GitHub username?
   default: mapp-metabolomics-unit
   required: true
+
+  
+message:
+  # just a regular question for comparision
+  type: str
 
 repository_name:
   type: str
@@ -31,7 +42,3 @@ module_name:
   type: str
   help: What is your Python module name?
   default: mymodule
-
-_tasks:
-  - "chmod +x project_init.sh"
-  - "./project_init.sh"
