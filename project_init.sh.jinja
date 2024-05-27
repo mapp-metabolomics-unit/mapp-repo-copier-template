@@ -2,6 +2,9 @@
 
 echo "Starting project initialization script..."
 
+# we print the PWD to see if we are in /tmp/ or not
+echo "Current working directory: $PWD"
+
 if [[ $PWD == /tmp* ]]; then
     echo "We are in /tmp/. This is copier update. Exiting."
     exit 0
