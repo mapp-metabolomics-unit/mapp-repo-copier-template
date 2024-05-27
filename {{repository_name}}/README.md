@@ -1,0 +1,14 @@
+# {{repository_name_stylized}}
+
+
+{{short_description}}
+
+- **Github repository**: <https://github.com/{{github_username}}/{{repository_name}}/>
+- **Documentation** <https://{{github_username}}.github.io/{{repository_name}}/>
+
+## Where to start
+
+Have a look at the [docs folder](https://github.com/{{github_username}}/{{repository_name}}/docs), this is very likely where your files are.
+
+
+Repository initiated with [mapp-metabolomics-unit/mapp-repo-copier-template](https://github.com/mapp-metabolomics-unit/mapp-repo-copier-template).
