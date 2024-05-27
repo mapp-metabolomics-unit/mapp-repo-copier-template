@@ -6,6 +6,9 @@ echo "Starting Git initialization script..."
 echo "GitHub Username: {{ github_username }}"
 echo "Repository Name: {{ repository_name }}"
 
+# Echo STAGE
+echo "STAGE: $STAGE"
+
 # Check if this is an update or initial creation
 if [ "$STAGE" = "update" ]; then
   echo "STAGE is update. Performing update operations."
