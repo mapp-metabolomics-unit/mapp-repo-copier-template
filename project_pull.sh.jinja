@@ -1,12 +1,21 @@
 #!/bin/bash
 
-echo "This is an update. Will pull the latest changes from the remote repository."
+echo "Starting project pull script..."
+echo "Current working directory: $PWD"
 
-# Check if this is an update or initial creation
-if [ -d ".git" ]; then
-echo ".git directory exists. Performing update operations."
+# Check if the project has already been initialized
+if [ ! -d .git/ ]; then
+  echo "This project is not initialized. Exiting."
+  exit 0
+fi
+
 # Pull the latest changes from remote if it's an update
 git fetch origin
+if [ $? -ne 0 ]; then
+    echo "Failed to fetch changes from remote"
+    exit 1
+fi
+
 git merge origin/main
 if [ $? -ne 0 ]; then
     echo "Failed to merge changes from remote"
@@ -37,7 +46,5 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 echo "Pushed to remote repository."
-else
-echo "Error: .git directory does not exist during update."
-exit 1
-fi
+
+echo "Project pull script completed."
