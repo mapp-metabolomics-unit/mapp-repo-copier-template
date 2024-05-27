@@ -24,36 +24,60 @@ else
       exit 1
   fi
   echo "Remote origin added."
+
+  # Add all files to git
+  git add .
+  if [ $? -ne 0 ]; then
+      echo "Failed to add files to git"
+      exit 1
+  fi
+  echo "Files added to git."
+
+  # Commit the files
+  git commit -m "Initial commit"
+  if [ $? -ne 0 ]; then
+      echo "Failed to commit files"
+      exit 1
+  fi
+  echo "Files committed."
+
+  # Push to the remote repository
+  git push -u origin main
+  if [ $? -ne 0 ]; then
+      echo "Failed to push to remote repository"
+      exit 1
+  fi
+  echo "Pushed to remote repository."
 fi
 
-# Pull the latest changes from remote if it's an update
 if [ "$STAGE" = "update" ]; then
+  # Pull the latest changes from remote if it's an update
   git fetch origin
   git reset --soft origin/main
-fi
 
-# Add all files to git
-git add .
-if [ $? -ne 0 ]; then
-    echo "Failed to add files to git"
-    exit 1
-fi
-echo "Files added to git."
+  # Add all files to git
+  git add .
+  if [ $? -ne 0 ]; then
+      echo "Failed to add files to git"
+      exit 1
+  fi
+  echo "Files added to git."
 
-# Commit the files
-git commit -m "Initial commit"
-if [ $? -ne 0 ]; then
-    echo "Failed to commit files"
-    exit 1
-fi
-echo "Files committed."
+  # Commit the changes
+  git commit -m "Update from template"
+  if [ $? -ne 0 ]; then
+      echo "Failed to commit changes"
+      exit 1
+  fi
+  echo "Changes committed."
 
-# Push to the remote repository
-git push -u origin main
-if [ $? -ne 0 ]; then
-    echo "Failed to push to remote repository"
-    exit 1
+  # Push to the remote repository
+  git push -u origin main
+  if [ $? -ne 0 ]; then
+      echo "Failed to push to remote repository"
+      exit 1
+  fi
+  echo "Pushed to remote repository."
 fi
-echo "Pushed to remote repository."
 
 echo "Git initialization script completed."
