@@ -42,8 +42,9 @@ module_name:
   help: What is your Python module name?
   default: mymodule
 
+
 _tasks:
-  - >-
+    - >-
       {% if {{run_setup}} == false %}
       chmod +x project_init.sh
       ./project_init.sh
