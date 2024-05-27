@@ -43,11 +43,11 @@ module_name:
   default: mymodule
 
 
-# _tasks:
-#     - >-
-#       {% if {{run_setup}} == false %}
-#       chmod +x project_init.sh
-#       ./project_init.sh
-#       {% elif {{run_setup}} == true %}
-#       ./project_pull.sh
-#       {% endif %}
+_tasks:
+  - >-
+    {% if run_setup == true %}
+    chmod +x project_init.sh
+    ./project_init.sh
+    {% else %}
+    ./project_pull.sh
+    {% endif %}
