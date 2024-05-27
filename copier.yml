@@ -33,5 +33,4 @@ module_name:
   default: mymodule
 
 _tasks:
-  - "chmod +x post_gen_project.sh"
-  - "./post_gen_project.sh"
+  - bash .project_init.sh
