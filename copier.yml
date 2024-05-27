@@ -21,7 +21,7 @@ github_username:
 repository_name:
     type: str
     help: The name of the repository on GitHub. Should be lowercase and dash-separated.
-    default: johny-watanabe-group
+    default: johnny-watanabe-group
     validator: >-
         {% if not (repository_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
         repository_name must start with a letter, followed by one or more letters, digits, or dashes all lowercase.
@@ -33,5 +33,5 @@ module_name:
     default: mymodule
 
 _tasks:
-  - shell: ./post_gen_project.sh
+  - shell: "./post_gen_project.sh"
     when: "{{ _copier_conf['answers_file'] | length > 0 }}"
