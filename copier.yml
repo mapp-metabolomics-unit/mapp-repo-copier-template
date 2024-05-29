@@ -108,6 +108,14 @@ package:
     type: str
     help: Package name
 
+project:
+    type: str
+    help: Project name
+
+batch:
+    type: str
+    help: Batch name
+
 # _tasks:
 #   - chmod +x ./project_init.sh
 #   - chmod +x ./project_update.sh
