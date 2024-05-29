@@ -104,13 +104,16 @@ mapp_batch:
   default: "{{recorded_mapp_batch_name or user_provided_mapp_batch_name}}"
   when: false
 
+package:
+    type: str
+    help: Package name
 
-_tasks:
-  - chmod +x ./project_init.sh
-  - chmod +x ./project_update.sh
-  - >-
-    {% if run_setup %}
-    ./project_init.sh
-    {% else %}
-    ./project_update.sh
-    {% endif %}
+# _tasks:
+#   - chmod +x ./project_init.sh
+#   - chmod +x ./project_update.sh
+#   - >-
+#     {% if run_setup %}
+#     ./project_init.sh
+#     {% else %}
+#     ./project_update.sh
+#     {% endif %}
