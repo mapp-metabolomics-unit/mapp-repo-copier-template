@@ -49,12 +49,12 @@ mapp_batch:
   required: true
   default: mapp_batch_00001
 
-# _tasks:
-#   - chmod +x ./project_init.sh
-#   - chmod +x ./project_update.sh
-#   - >-
-#     {% if run_setup %}
-#     ./project_init.sh
-#     {% else %}
-#     ./project_update.sh
-#     {% endif %}
+_tasks:
+  - chmod +x ./project_init.sh
+  - chmod +x ./project_update.sh
+  - >-
+    {% if run_setup %}
+    ./project_init.sh
+    {% else %}
+    ./project_update.sh
+    {% endif %}
