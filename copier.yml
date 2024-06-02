@@ -49,6 +49,24 @@ mapp_batch:
   required: true
   default: mapp_batch_00001
 
+mapp_batch_description:
+  type: str
+  help: The description of the batch in the MAPP Metabolomics Unit.
+  required: False
+  default: "Untargeted matabolomics of Trigonostemon cherrieri leaves in drought and healthy conditions"
+
+gnps_job_id:
+  type: str
+  help: The GNPS job ID (optional).
+  required: false
+
+target_variable:
+  type: str
+  help: The target variable for the analysis (optional)
+  required: false
+  default: source_taxon
+
+
 _tasks:
   - chmod +x ./project_init.sh
   - chmod +x ./project_update.sh
