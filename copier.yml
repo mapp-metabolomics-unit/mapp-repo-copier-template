@@ -66,13 +66,6 @@ target_variable:
   required: false
   default: source_taxon
 
-# copier.yaml
-_current_dir:
-  type: str
-  default: "{{ pwd }}"
-  help: "The current working directory"
-
-
 _tasks:
   - chmod +x ./project_init.sh
   - chmod +x ./project_update.sh
