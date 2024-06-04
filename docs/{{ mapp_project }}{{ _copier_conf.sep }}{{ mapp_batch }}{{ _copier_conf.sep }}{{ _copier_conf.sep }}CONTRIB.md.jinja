@@ -110,6 +110,14 @@ conda activate met_annot_enhancer
 python /Users/pma/Dropbox/git_repos/mandelbrot_project/met_annot_enhancer/src/dev/nb.py
 ```
 
+### Remove symlinks
+This command should remove symlinks from the downloaded GNPS job folder (make sure to run it from the mapp_batch folder)
+
+```bash
+find ./results/met_annot_enhancer/{{gnps_job_id}} -type l -exec rm {} +
+```
+
+
 ### Run biostat_toolbox
 
 #### Params user
