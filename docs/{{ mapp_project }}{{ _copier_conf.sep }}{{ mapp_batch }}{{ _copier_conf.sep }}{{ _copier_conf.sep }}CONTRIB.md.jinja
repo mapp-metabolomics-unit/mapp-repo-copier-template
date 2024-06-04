@@ -28,6 +28,11 @@ sirius -i ./mzmine/{{mapp_batch}}_sirius.mgf --output ./sirius/{{mapp_batch}} --
 sirius -i ./sirius/{{mapp_batch}} --output ./sirius/{{mapp_batch}} --maxmz 2500 config --IsotopeSettings.filter=true --FormulaSearchDB=BIO --Timeout.secondsPerTree=0 --FormulaSettings.enforced=HCNOP --Timeout.secondsPerInstance=0 --AdductSettings.detectable=[[M+H3N+H]+,[M+Na]+,[M-H4O2+H]+,[M+K]+,[M-H2O+H]+,[M+H]+] --UseHeuristic.mzToUseHeuristicOnly=650 --AlgorithmProfile=orbitrap --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=5.0ppm --NumberOfCandidatesPerIon=1 --UseHeuristic.mzToUseHeuristic=300 --FormulaSettings.detectable=Cl,Br,S --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacEpochs.burnInPeriod=2000 --ZodiacEpochs.numberOfMarkovChains=10 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --ZodiacEpochs.iterations=20000 --AdductSettings.enforced=, --AdductSettings.fallback=[[M+Na]+,[M+K]+,[M-H2O+H]+,[M+H]+] --FormulaResultThreshold=true --InjectElGordoCompounds=true --StructureSearchDB=BIO --RecomputeResults=false formula zodiac fingerprint structure canopus write-summaries
 ```
 
+### Move results one directory up
+
+```bash
+mv *.tsv *.mztab -t ..
+```
 
 ### Run met-annot-enhancer
 
@@ -174,23 +179,23 @@ filter_sample_metadata_two :
 
 filter_variable_metadata_one :
   mode : ''
-  factor_name : '' # E.g. 'npc_pathway_canopus'
+  factor_name : '' # E.g. 'canopus_npc_pathway'
   levels : '' # E.g. One of "Alkaloids", "Amino acids and Peptides", "Terpenoids", "Fatty acids", "Carbohydrates", "Polyketides", "Shikimates and Phenylpropanoids" for levels if you use factor_name : 'NPC.pathway_canopus'
 
 filter_variable_metadata_two :
   mode : ''
-  factor_name : '' # E.g. 'npc_pathway_canopus'
-  levels : '' # E.g. One of "Alkaloids", "Amino acids and Peptides", "Terpenoids", "Fatty acids", "Carbohydrates", "Polyketides", "Shikimates and Phenylpropanoids" for levels if you use factor_name : 'NPC.pathway_canopus'
+  factor_name : '' # E.g. 'canopus_npc_pathway'
+  levels : '' # E.g. One of "Alkaloids", "Amino acids and Peptides", "Terpenoids", "Fatty acids", "Carbohydrates", "Polyketides", "Shikimates and Phenylpropanoids" for levels if you use factor_name : 'canopus_npc_pathway_probability'
 
 
 filter_variable_metadata_annotated :
   mode : ''
-  factor_name : '' # E.g. 'npc_pathway_canopus'
+  factor_name : '' # E.g. 'canopus_npc_pathway'
   levels : '' # E.g. 'NA' 
 
 filter_variable_metadata_num :
   mode : '' # 'above' or 'below', if '', the filter is not applied
-  factor_name : '' # e.g 'sirius_confidencescore'
+  factor_name : '' # e.g e.g 'sirius_confidencescore' or 'canopus_npc_pathway_probability'
   level :  # Numerical value. E.g 0.5
 
 
