@@ -1,4 +1,6 @@
 
+```bash
+
 ## Sirius
 
 ```bash
@@ -357,6 +359,25 @@ taxonomical-utils merge --input-file docs/fibl-pilot/pos/metadata/original/fibl_
 
 ### Met-annot-unifer
 
+You will need to met-annot-unifier-cli installed
+
+```bash
+pip install met-annot-unifier
+```
+
+In case you want to update the package, you can run the following command:
+
+```bash
+pip install met-annot-unifier -U
+```
+
+Make sure you are in the correct directory
+
+```bash
+cd ./docs/{{mapp_project}}/{{mapp_batch}}/
+```
+
+
 #### Align horizontally
 
 ```bash
@@ -366,5 +387,5 @@ met-annot-unifier-cli align-horizontally --canopus-file ./results/sirius/canopus
 #### Align vertically
 
 ```bash
-met-annot-unifier-cli align-vertically  --gnps-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/library/merged_results_with_gnps.tsv --gnps-mn-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/networking/clustersummary_with_network.tsv --sirius-file ./results/sirius/compound_identifications.tsv --isdb-file ./results/met_annot_enhancer/{{mapp_batch}}/{{mapp_batch}}_spectral_match_results_repond_flat.tsv --output ./results/tmp/{{mapp_batch}}_met_annot_unified_vertical.tsv
+met-annot-unifier-cli align-vertically  --gnps-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/library/merged_results_with_gnps.tsv --isdb-file ./results/met_annot_enhancer/{{mapp_batch}}/{{mapp_batch}}_spectral_match_results_repond_flat.tsv --sirius-file ./results/sirius/compound_identifications.tsv  --output ./results/tmp/{{mapp_batch}}_met_annot_unified_vertical.tsv
 ```
