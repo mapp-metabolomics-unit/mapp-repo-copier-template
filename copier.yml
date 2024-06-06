@@ -53,7 +53,7 @@ mapp_batch_description:
   type: str
   help: The description of the batch in the MAPP Metabolomics Unit.
   required: False
-  default: "Untargeted matabolomics of Trigonostemon cherrieri leaves in drought and healthy conditions"
+  default: "Untargeted metabolomics of Trigonostemon cherrieri leaves in drought and healthy conditions"
 
 gnps_job_id:
   type: str
