@@ -341,19 +341,19 @@ Run the following command to get the taxonomy for the results:
 1. resolve
 
 ```bash
-taxonomical-utils resolve --input-file docs/fibl-pilot/pos/metadata/original/fibl_pilot_pos_metadata.tsv --output-file docs/fibl-pilot/pos/metadata/original/fibl_pilot_pos_metadata_resolved.csv --org-column-header source_taxon
+taxonomical-utils resolve --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata.tsv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --org-column-header source_taxon
 ```
 
 2. retrieve upper taxa lineage
     
 ```bash
-taxonomical-utils append-taxonomy --input-file docs/fibl-pilot/pos/metadata/original/fibl_pilot_pos_metadata_resolved.csv --output-file docs/fibl-pilot/pos/metadata/original/metadata_upper_taxa_lineage.csv
+taxonomical-utils append-taxonomy --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/metadata_upper_taxa_lineage.csv
 ```
 
 3. merge the taxonomy with the results
 
 ```bash
-taxonomical-utils merge --input-file docs/fibl-pilot/pos/metadata/original/fibl_pilot_pos_metadata.tsv --resolved-taxa-file docs/fibl-pilot/pos/metadata/original/fibl_pilot_pos_metadata_resolved.csv --upper-taxa-lineage-file docs/fibl-pilot/pos/metadata/original/metadata_upper_taxa_lineage.csv --output-file docs/fibl-pilot/pos/metadata/original/fibl_pilot_pos_metadata.csv --org-column-header source_taxon --delimiter '\t'
+taxonomical-utils merge --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata.tsv --resolved-taxa-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --upper-taxa-lineage-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/metadata_upper_taxa_lineage.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/treated/{{mapp_batch}}_metadata.csv --org-column-header source_taxon --delimiter '\t'
 ```
 
 
