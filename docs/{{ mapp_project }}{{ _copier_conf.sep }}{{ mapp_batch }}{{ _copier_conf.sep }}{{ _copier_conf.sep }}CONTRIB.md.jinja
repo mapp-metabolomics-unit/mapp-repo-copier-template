@@ -1,4 +1,45 @@
 
+### Taxonomy handling
+
+Install taxonomical-utils
+
+```bash
+pip install taxonomical_utils
+```
+
+Run the following command to get the taxonomy for the results:
+
+1. resolve
+
+```bash
+taxonomical-utils resolve-taxa --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata.tsv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --org-column-header source_taxon
+```
+
+2. retrieve upper taxa lineage
+    
+```bash
+taxonomical-utils append-taxonomy --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/metadata_upper_taxa_lineage.csv
+```
+
+3. append WD ids 
+
+```bash
+taxonomical-utils append-wd-id --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_wd.csv
+```
+
+```bash
+taxonomical-utils merge --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata.tsv --resolved-taxa-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --upper-taxa-lineage-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/metadata_upper_taxa_lineage.csv --wd-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_wd.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/treated/{{mapp_batch}}_metadata.tsv --org-column-header source_taxon
+```
+
+Alternatively you can run all commands at ounce by running the following command:
+
+```bash
+taxonomical-utils resolve-taxa --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata.tsv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --org-column-header source_taxon && \
+taxonomical-utils append-taxonomy --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/metadata_upper_taxa_lineage.csv && \
+taxonomical-utils append-wd-id --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_wd.csv && \
+taxonomical-utils merge --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata.tsv --resolved-taxa-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --upper-taxa-lineage-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/metadata_upper_taxa_lineage.csv --wd-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_wd.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/treated/{{mapp_batch}}_metadata.tsv --org-column-header source_taxon
+```
+
 ```bash
 
 ## Sirius
@@ -54,9 +95,9 @@ options:
   
 paths:
   gnps_job_id: {{gnps_job_id}} # The GNPS job id you want to treat
-  input_folder: /Users/pma/Dropbox/git_repos/mapp-metabolomics-unit/{{recorded_repository_name or repository_name}}/docs/{{mapp_project}}/{{mapp_batch}}/results/met_annot_enhancer # The path were you want your GNPS job folder to be placed
+  input_folder: /Users/pma/git_repos/mapp-metabolomics-unit/{{recorded_repository_name or repository_name}}/docs/{{mapp_project}}/{{mapp_batch}}/results/met_annot_enhancer # The path were you want your GNPS job folder to be placed
   project_name: {{mapp_batch}} #ISDB_annot_LP_plantfungi_set # The name you want to give to your project, output resulst in data_out/project_name
-  output_folder: /Users/pma/Dropbox/git_repos/mapp-metabolomics-unit/{{recorded_repository_name or repository_name}}/docs/{{mapp_project}}/{{mapp_batch}}/results/met_annot_enhancer # the path for your output to be stored in
+  output_folder: /Users/pma/git_repos/mapp-metabolomics-unit/{{recorded_repository_name or repository_name}}/docs/{{mapp_project}}/{{mapp_batch}}/results/met_annot_enhancer # the path for your output to be stored in
   metadata_path: /Users/pma/01_large_files/lotus/230106_frozen_metadata.csv # Path to the metadata of the spectral file /210715_inhouse_metadata.csv /211220_frozen_metadata.csv You can use multiple ones. Just list them as [a.csv, b.csv, c.csv]
   db_file_path: /Users/pma/01_large_files/mgf/isdb_pos_cleaned.pkl  # Path to your spectral library file. You can use multiple ones. Just list them as [a.mgf, b.mgf, c.mgf]
   adducts_pos_path: data_loc/230106_frozen_metadata/230106_frozen_metadata_adducts_pos.tsv.gz # Path to the adducts file in pos mode
