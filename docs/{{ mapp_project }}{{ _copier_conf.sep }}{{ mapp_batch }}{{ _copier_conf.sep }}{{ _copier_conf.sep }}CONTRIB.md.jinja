@@ -368,40 +368,6 @@ Rscript /Users/pma/Dropbox/git_repos/mapp-metabolomics-unit/biostat_toolbox/src/
 ```
 
 
-
-### Taxonomy handling
-
-Install taxonomical-utils
-
-```bash
-pip install taxonomical_utils
-```
-
-Run the following command to get the taxonomy for the results:
-
-1. resolve
-
-```bash
-taxonomical-utils resolve-taxa --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata.tsv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --org-column-header source_taxon
-```
-
-2. retrieve upper taxa lineage
-    
-```bash
-taxonomical-utils append-taxonomy --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/metadata_upper_taxa_lineage.csv
-```
-
-3. append WD ids 
-
-```bash
-taxonomical-utils append-wd-id --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_wd.csv
-```
-
-```bash
-taxonomical-utils merge --input-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata.tsv --resolved-taxa-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_metadata_resolved.csv --upper-taxa-lineage-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/metadata_upper_taxa_lineage.csv --wd-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/original/{{mapp_batch}}_wd.csv --output-file docs/{{mapp_project}}/{{mapp_batch}}/metadata/treated/{{mapp_batch}}_metadata.csv --org-column-header source_taxon
-```
-
-
 ### Met-annot-unifer
 
 You will need to met-annot-unifier-cli installed
