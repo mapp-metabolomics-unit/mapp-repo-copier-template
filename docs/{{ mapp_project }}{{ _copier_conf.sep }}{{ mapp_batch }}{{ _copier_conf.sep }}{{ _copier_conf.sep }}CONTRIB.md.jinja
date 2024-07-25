@@ -141,7 +141,7 @@ sirius -i ./mzmine/{{mapp_batch}}_sirius.mgf --output ./sirius/{{mapp_batch}} --
 ### Rerun sirius
 
 ```bash
-sirius -i ./mzmine/{{mapp_batch}}_sirius.mgf --output ./sirius/{{mapp_batch}} --maxmz 2500 config --IsotopeSettings.filter=true --FormulaSearchDB=BIO --Timeout.secondsPerTree=0 --FormulaSettings.enforced=HCNOP --Timeout.secondsPerInstance=0 --AdductSettings.detectable=[[M-H]-,[M-H2O-H]-,[M+Cl]-,[M+Br]-] --UseHeuristic.mzToUseHeuristicOnly=650 --AlgorithmProfile=orbitrap --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=15.0ppm --NumberOfCandidatesPerIon=1 --UseHeuristic.mzToUseHeuristic=300 --FormulaSettings.detectable=Cl,Br,S --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacEpochs.burnInPeriod=2000 --ZodiacEpochs.numberOfMarkovChains=10 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --ZodiacEpochs.iterations=20000 --AdductSettings.enforced=, --AdductSettings.fallback=[[M-H]-,[M-H2O-H]-,[M+Br]-,[M+Cl]-] --FormulaResultThreshold=true --InjectElGordoCompounds=true --StructureSearchDB=BIO --RecomputeResults=false formula zodiac fingerprint structure canopus write-summaries
+sirius -i ./sirius/{{mapp_batch}} --output ./sirius/{{mapp_batch}} --maxmz 2500 config --IsotopeSettings.filter=true --FormulaSearchDB=BIO --Timeout.secondsPerTree=0 --FormulaSettings.enforced=HCNOP --Timeout.secondsPerInstance=0 --AdductSettings.detectable=[[M-H]-,[M-H2O-H]-,[M+Cl]-,[M+Br]-] --UseHeuristic.mzToUseHeuristicOnly=650 --AlgorithmProfile=orbitrap --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=15.0ppm --NumberOfCandidatesPerIon=1 --UseHeuristic.mzToUseHeuristic=300 --FormulaSettings.detectable=Cl,Br,S --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacEpochs.burnInPeriod=2000 --ZodiacEpochs.numberOfMarkovChains=10 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --ZodiacEpochs.iterations=20000 --AdductSettings.enforced=, --AdductSettings.fallback=[[M-H]-,[M-H2O-H]-,[M+Br]-,[M+Cl]-] --FormulaResultThreshold=true --InjectElGordoCompounds=true --StructureSearchDB=BIO --RecomputeResults=false formula zodiac fingerprint structure canopus write-summaries
 ```
 
 ### Move results one directory up
@@ -223,7 +223,7 @@ filtering_params:
 conda activate met_annot_enhancer
 ```
 ```bash
-python /Users/pma/Dropbox/git_repos/mandelbrot_project/met_annot_enhancer/src/dev/nb.py
+python /Users/pma/git_repos/mandelbrot_project/met_annot_enhancer/src/dev/nb.py
 ```
 
 ### Remove symlinks
@@ -240,8 +240,8 @@ find ./results/met_annot_enhancer/{{gnps_job_id}} -type l -exec rm {} +
 
 ```yaml
 paths:
-  docs: '/Users/pma/Dropbox/git_repos/mapp-metabolomics-unit/{{recorded_repository_name or repository_name}}/docs'
-  output: '/Users/pma/Dropbox/git_repos/mapp-metabolomics-unit/{{recorded_repository_name or repository_name}}/docs/{{mapp_project}}/{{mapp_batch}}/results/stats' # Not mandatory, default is in the stats subdirectory
+  docs: '/Users/pma/git_repos/mapp-metabolomics-unit/{{recorded_repository_name or repository_name}}/docs'
+  output: '/Users/pma/git_repos/mapp-metabolomics-unit/{{recorded_repository_name or repository_name}}/docs/{{mapp_project}}/{{mapp_batch}}/results/stats' # Not mandatory, default is in the stats subdirectory
 
 operating_system:
   system: unix # 
@@ -437,7 +437,7 @@ feature_to_filter :
 Launch the scripts
 
 ``````bash
-Rscript /Users/pma/Dropbox/git_repos/mapp-metabolomics-unit/biostat_toolbox/src/biostat_toolbox.r
+Rscript /Users/pma/git_repos/mapp-metabolomics-unit/biostat_toolbox/src/biostat_toolbox.r
 ```
 
 
