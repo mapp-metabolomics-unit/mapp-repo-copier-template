@@ -37,6 +37,12 @@ github_username:
   required: true
   # when: "{{run_setup}}"
 
+git_repo_path:
+  type: str
+  help: The path to the repository containing the templated repo on your local system.
+  default: /home/allardpm/git_repos/mapp-metabolomics-unit
+  required: true
+
 mapp_project:
   type: str
   help: The name of the project in the MAPP Metabolomics Unit.

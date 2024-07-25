@@ -1,3 +1,36 @@
+### Move .mzML file to local directory
+For this we use https://github.com/mapp-metabolomics-unit/msfiles-selector
+
+Once you have cloned this repo you can run the following command to move the files (from the src dir)
+
+```bash
+./copy_files.sh -i /media/share/mapp/public/QE_plus_unifr/converted -o /msdata/{{mapp_project}}/{{mapp_batch}} -p "your_file_pattern_*.mzML"
+```
+
+You can now list the files in the msdata directory
+
+```bash
+ls /msdata/{{mapp_project}}/{{mapp_batch}}
+```
+
+And fill the mzbatch file with the paths to the files
+
+Navigate to the Mzmine results folder
+
+```bash
+cd /docs/{{mapp_project}}/{{mapp_batch}}/results/mzmine
+```
+
+And proceed to sed black magic to update the mzmine xml file
+
+```bash
+sed '/<parameter name="File names">/,/<\/parameter>/c\
+<parameter name="File names">\
+'"$(ls /msdata/{{mapp_project}}/{{mapp_batch}}*.mzML | sed 's/^/    <file>/' | sed 's/$/<\/file>/')"\
+<\/parameter>' {{mapp_batch}}.mzbatch > {{mapp_batch}}.mzbatch
+```
+
+
 
 ### Taxonomy handling
 
