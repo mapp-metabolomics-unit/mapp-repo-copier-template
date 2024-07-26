@@ -189,7 +189,7 @@ repond_params:
   Top_N_Sample: 2 # Max number of contributors to take into account for taxo reponderation, set to 0 for all
   top_to_output: 1 # Top X for final ouput
   ppm_tol: 2 # ppm tol to be used for ms1 match
-  polarity: 'pos' # ion mode you are working with (pos or neg)
+  polarity: '{% if ionization_mode == "positive" %}pos{% else %}neg{% endif %}' # ion mode you are working with (pos or neg)
   organism_header: 'source_taxon' # Mandatory: header of your samples' organism in metadata file
   var_one_header: '{{target_variable}}' # Optional (Run_line_x_line parameter)
 

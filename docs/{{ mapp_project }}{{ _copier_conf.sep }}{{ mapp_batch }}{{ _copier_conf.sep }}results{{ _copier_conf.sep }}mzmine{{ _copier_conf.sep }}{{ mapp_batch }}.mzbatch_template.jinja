@@ -177,7 +177,7 @@
             <parameter name="Mobility"/>
             <parameter name="MS level filter" selected="MS1, level = 1">1</parameter>
             <parameter name="Scan definition"/>
-            <parameter name="Polarity">+</parameter>
+            <parameter name="Polarity">{% if ionization_mode == "positive" %}+{% else %}-{% endif %}</parameter>
             <parameter name="Spectrum type">ANY</parameter>
         </parameter>
         <parameter name="Minimum consecutive scans">5</parameter>

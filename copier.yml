@@ -61,6 +61,15 @@ mapp_batch_description:
   required: False
   default: "Untargeted metabolomics of Trigonostemon cherrieri leaves in drought and healthy conditions"
 
+ionization_mode:
+  type: str
+  help: "What is the ionization mode of the study?"
+  choices:
+    - positive
+    - negative
+  required: true
+
+
 gnps_job_id:
   type: str
   help: The GNPS job ID (optional).
