@@ -20,15 +20,15 @@
                 <parameter name="Spectrum type">ANY</parameter>
             </parameter>
             <parameter name="Crop MS1 m/z" selected="false"/>
-            <parameter name="MS1 detector (Advanced)" selected="true" selected_item="Factor of lowest signal">
+            <parameter name="MS1 detector (Advanced)" selected="true" selected_item="Centroid">
                 <module name="Factor of lowest signal">
-                    <parameter name="Noise factor">5.0</parameter>
+                    <parameter name="Noise factor">
                 </module>
                 <module name="Auto">
-                    <parameter name="Noise level">1000.0</parameter>
+                    <parameter name="Noise level">
                 </module>
                 <module name="Centroid">
-                    <parameter name="Noise level"/>
+                    <parameter name="Noise level"/>2E4</parameter>
                 </module>
                 <module name="Exact mass">
                     <parameter name="Noise level"/>
@@ -47,15 +47,15 @@
                     <parameter name="Wavelet window size (%)"/>
                 </module>
             </parameter>
-            <parameter name="MS2 detector (Advanced)" selected="true" selected_item="Factor of lowest signal">
+            <parameter name="MS2 detector (Advanced)" selected="true" selected_item="Centroid">
                 <module name="Factor of lowest signal">
-                    <parameter name="Noise factor">0.0</parameter>
+                    <parameter name="Noise factor">
                 </module>
                 <module name="Auto">
-                    <parameter name="Noise level">1000.0</parameter>
+                    <parameter name="Noise level">
                 </module>
                 <module name="Centroid">
-                    <parameter name="Noise level"/>
+                    <parameter name="Noise level"/>0</parameter>
                 </module>
                 <module name="Exact mass">
                     <parameter name="Noise level"/>
