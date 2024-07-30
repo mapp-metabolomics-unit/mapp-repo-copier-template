@@ -417,4 +417,10 @@
         <parameter name="Exclude multiple charge">false</parameter>
         <parameter name="Exclude multimers">false</parameter>
     </batchstep>
+    <batchstep method="io.github.mzmine.modules.io.projectsave.ProjectSaveAsModule" parameter_version="1">
+        <parameter name="Project file">
+            <current_file>/media/share/mapp/public/mzmine_projects/{{mapp_batch}}.mzmine</current_file>
+        </parameter>
+        <parameter name="Project type">Standalone (large/flexible)</parameter>
+    </batchstep>
 </batch>
