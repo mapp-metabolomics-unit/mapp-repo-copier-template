@@ -144,6 +144,13 @@ sirius -i ./mzmine/{{mapp_batch}}_sirius.mgf --output ./sirius/{{mapp_batch}} --
 sirius -i ./sirius/{{mapp_batch}} --output ./sirius/{{mapp_batch}} --maxmz 2500 config --IsotopeSettings.filter=true --FormulaSearchDB=BIO --Timeout.secondsPerTree=0 --FormulaSettings.enforced=HCNOP --Timeout.secondsPerInstance=0 --AdductSettings.detectable=[[M-H]-,[M-H2O-H]-,[M+Cl]-,[M+Br]-] --UseHeuristic.mzToUseHeuristicOnly=650 --AlgorithmProfile=orbitrap --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=15.0ppm --NumberOfCandidatesPerIon=1 --UseHeuristic.mzToUseHeuristic=300 --FormulaSettings.detectable=Cl,Br,S --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacEpochs.burnInPeriod=2000 --ZodiacEpochs.numberOfMarkovChains=10 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --ZodiacEpochs.iterations=20000 --AdductSettings.enforced=, --AdductSettings.fallback=[[M-H]-,[M-H2O-H]-,[M+Br]-,[M+Cl]-] --FormulaResultThreshold=true --InjectElGordoCompounds=true --StructureSearchDB=BIO --RecomputeResults=false formula zodiac fingerprint structure canopus write-summaries
 ```
 
+### Move to the sirius results folder
+
+```bash
+cd ./sirius/{{mapp_batch}}
+```
+
+
 ### Move results one directory up
 
 ```bash
@@ -264,12 +271,18 @@ ms_files_extension: ".mzML"
 
 
 actions:
-  scale_data : TRUE
+  scale_data : FALSE
+  ponderate_data :
+    run : FALSE
+    factor_name : ''
+  prune_data :
+    threshold : 
   run_PLSDA : TRUE
   calculate_multi_series_fc : FALSE
   run_fc_treemaps : TRUE
   run_with_gap_filled: FALSE
   run_cytoscape_connector : FALSE
+
 
 
 options:
@@ -329,14 +342,22 @@ target:
 
 
 colors:
+  continuous: FALSE
   all:
    key:
-      # - 'CH'
-      # - 'TR'
+    - 'pDelta'
+    - 'psDelta'
+    - 'sDelta'
+    - 'WT'
 
    value:
-      # - "cadetblue" # 'X1'
-      # - "goldenrod" # 'X2'
+      # - "darkorchid" # 'blastogenesis'
+      # - "goldenrod" # 'healing'
+      # - "chartreuse" # 'regeneration'
+      - "coral" # 'pDelta'
+      - "cornflowerblue" # 'psDelta'
+      - "cyan" # 'sDelta'
+      - "darkblue" # 'WT'
 
 
 # Only colors without a numeric (for some reason iheatmapr appears to not like these)
