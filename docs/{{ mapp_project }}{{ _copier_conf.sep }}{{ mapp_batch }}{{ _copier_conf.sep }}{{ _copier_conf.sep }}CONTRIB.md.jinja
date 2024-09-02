@@ -293,7 +293,7 @@ filter_blank :
   fold_change : # (numeric) Features with fold change less than this value are removed. The default is 20.
   factor_name : '' # (character) The factor name in the sample metadata file that contains the sample type. The default is "sample_type".
   blank_label : '' # (character) The label used for the blanks in the sample metadata file. The default is "BK".
-  qc_label : '' # (character) The label used for the QC samples in the sample metadata file. The default is "QC".
+  qc_label : '' # (character) The label used for the QC samples in the sample metadata file. The default is "QC". Else use NULL, If set to NULL then the median of the samples is used.
   fraction_in_blank : # (numeric) Features present in less than this proportion of the blanks are not considered for removal. The default is 0.
 
 filter_sample_type :
