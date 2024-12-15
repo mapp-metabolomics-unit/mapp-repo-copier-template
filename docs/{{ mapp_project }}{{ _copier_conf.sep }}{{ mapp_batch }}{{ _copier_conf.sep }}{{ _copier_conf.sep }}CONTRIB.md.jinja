@@ -4,7 +4,7 @@ For this we use https://github.com/mapp-metabolomics-unit/msfiles-selector
 Once you have cloned this repo you can run the following command to move the files (from the src dir)
 
 ```bash
-sg commons-users -c './copy_files.sh -i /media/share/mapp/public/QE_plus_unifr/converted -o /msdata/{{mapp_project}}/{{mapp_batch}} -p "your_file_pattern_*.mzML"'
+sg commons-users -c './copy_files.sh -i /media/share/mapp/public/QE_plus_unifr/converted -o /msdata/{{mapp_project}}/{{mapp_batch}} -p "{{common_filename_pattern}}"'
 ```
 
 

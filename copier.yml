@@ -69,11 +69,16 @@ ionization_mode:
     - negative
   required: true
 
-
 gnps_job_id:
   type: str
   help: The GNPS job ID (optional).
   required: false
+
+common_filename_pattern:
+  type: str
+  help: The common filename pattern for the files in the batch.
+  required: False
+  default: "*mapp_01_*.mzML"
 
 target_variable:
   type: str
