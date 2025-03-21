@@ -180,7 +180,7 @@ paths:
   project_name: {{mapp_batch}} #ISDB_annot_LP_plantfungi_set # The name you want to give to your project, output resulst in data_out/project_name
   output_folder: {{git_repo_path}}/{{recorded_repository_name or repository_name}}/docs/{{mapp_project}}/{{mapp_batch}}/results/met_annot_enhancer # the path for your output to be stored in
   metadata_path: /Users/pma/01_large_files/lotus/230106_frozen_metadata.csv # Path to the metadata of the spectral file /210715_inhouse_metadata.csv /211220_frozen_metadata.csv You can use multiple ones. Just list them as [a.csv, b.csv, c.csv]
-  db_file_path: /Users/pma/01_large_files/mgf/isdb_pos_cleaned.pkl  # Path to your spectral library file. You can use multiple ones. Just list them as [a.mgf, b.mgf, c.mgf]
+  db_file_path: /Users/pma/01_large_files/mgf/isdb_{% if ionization_mode == "positive" %}pos{% else %}neg{% endif %}_cleaned.pkl  # Path to your spectral library file. You can use multiple ones. Just list them as [a.mgf, b.mgf, c.mgf]
   adducts_pos_path: data_loc/230106_frozen_metadata/230106_frozen_metadata_adducts_pos.tsv.gz # Path to the adducts file in pos mode
   adducts_neg_path: data_loc/230106_frozen_metadata/230106_frozen_metadata_adducts_neg.tsv.gz # Path to the adducts file in neg mode
 
