@@ -238,6 +238,7 @@ python {{git_repo_path}}/mandelbrot_project/met_annot_enhancer/src/dev/nb.py
 This command should remove symlinks from the downloaded GNPS job folder (make sure to run it from the mapp_batch folder)
 
 ```bash
+cd ./docs/{{mapp_project}}/{{mapp_batch}}
 find ./results/met_annot_enhancer/{{gnps_job_id}} -type l -exec rm {} +
 ```
 
@@ -487,11 +488,11 @@ cd ./docs/{{mapp_project}}/{{mapp_batch}}/
 #### Align horizontally
 
 ```bash
-met-annot-unifier-cli align-horizontally --canopus-file ./results/sirius/canopus_compound_summary.tsv --gnps-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/library/merged_results_with_gnps.tsv --gnps-mn-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/networking/clustersummary_with_network.tsv --sirius-file ./results/sirius/compound_identifications.tsv --isdb-file ./results/met_annot_enhancer/{{mapp_batch}}/{{mapp_batch}}_spectral_match_results_repond_flat.tsv --output ./results/tmp/{{mapp_batch}}_met_annot_unified_horizontal.tsv
+met-annot-unifier-cli align-horizontally --canopus-file ./results/sirius/canopus_structure_summary.tsv --gnps-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/library/merged_results_with_gnps.tsv --gnps-mn-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/networking/clustersummary_with_network.tsv --sirius-file ./results/sirius/structure_identifications.tsv --isdb-file ./results/met_annot_enhancer/{{mapp_batch}}/{{mapp_batch}}_spectral_match_results_repond_flat.tsv --output ./results/tmp/{{mapp_batch}}_met_annot_unified_horizontal.tsv
 ```
 
 #### Align vertically
 
 ```bash
-met-annot-unifier-cli align-vertically  --gnps-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/library/merged_results_with_gnps.tsv --isdb-file ./results/met_annot_enhancer/{{mapp_batch}}/{{mapp_batch}}_spectral_match_results_repond_flat.tsv --sirius-file ./results/sirius/compound_identifications.tsv  --output ./results/tmp/{{mapp_batch}}_met_annot_unified_vertical.tsv
+met-annot-unifier-cli align-vertically  --gnps-file ./results/met_annot_enhancer/{{gnps_job_id}}/nf_output/library/merged_results_with_gnps.tsv --isdb-file ./results/met_annot_enhancer/{{mapp_batch}}/{{mapp_batch}}_spectral_match_results_repond_flat.tsv --sirius-file ./results/sirius/structure_identifications.tsv  --output ./results/tmp/{{mapp_batch}}_met_annot_unified_vertical.tsv
 ```
