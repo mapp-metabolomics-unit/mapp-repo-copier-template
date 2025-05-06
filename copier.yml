@@ -75,6 +75,12 @@ gap_filling:
   default: true
   required: false
 
+noise_level:
+  type: float
+  help: "What is the noise level for the analysis?"
+  default: 5E5
+  required: true
+
 gnps_job_id:
   type: str
   help: The GNPS job ID (optional).
