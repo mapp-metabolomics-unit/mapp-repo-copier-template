@@ -69,6 +69,12 @@ ionization_mode:
     - negative
   required: true
 
+gap_filling:
+  type: bool
+  help: "Should the gap filling be performed?"
+  default: true
+  required: false
+
 gnps_job_id:
   type: str
   help: The GNPS job ID (optional).

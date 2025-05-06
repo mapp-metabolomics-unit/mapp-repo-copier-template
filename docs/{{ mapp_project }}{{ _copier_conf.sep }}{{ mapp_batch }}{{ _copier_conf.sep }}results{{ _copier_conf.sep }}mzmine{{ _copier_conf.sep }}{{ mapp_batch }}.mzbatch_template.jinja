@@ -356,6 +356,21 @@
         <parameter name="Mass defect" selected="false"/>
         <parameter name="Original feature list">KEEP</parameter>
     </batchstep>
+    {% if gap_filling %}
+    <batchstep method="io.github.mzmine.modules.dataprocessing.gapfill_peakfinder.multithreaded.MultiThreadPeakFinderModule" parameter_version="1">
+        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
+        <parameter name="Name suffix">gap-filled</parameter>
+        <parameter name="Intensity tolerance">0.2</parameter>
+        <parameter name="m/z tolerance (sample-to-sample)">
+            <absolutetolerance>0.001</absolutetolerance>
+            <ppmtolerance>5.0</ppmtolerance>
+        </parameter>
+        <parameter name="Retention time tolerance" unit="MINUTES">0.1</parameter>
+        <parameter name="Minimum scans (data points)">5</parameter>
+        <parameter name="Original feature list">KEEP</parameter>
+    </batchstep>
+    {% else %}
+    {% endif %}
     <batchstep method="io.github.mzmine.modules.io.export_features_gnps.fbmn.GnpsFbmnExportAndSubmitModule" parameter_version="3">
         <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
         <parameter name="Filename">
