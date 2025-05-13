@@ -21,7 +21,7 @@ if git remote -v | grep -q origin; then
     echo "Remote origin already exists."
     exit 0
 else
-    git remote add origin "git@github.com:{{ github_username }}/{{ repository_name }}.git"
+    git remote add origin "https://github.com/{{ github_username }}/{{ repository_name }}.git"
     echo "Remote origin added."
 fi
 
