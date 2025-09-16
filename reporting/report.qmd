@@ -10,9 +10,9 @@ format:
     toc: true
     number-sections: false
 params:
-  project_id: "mapp_project_00061"
-  batch_id: "mapp_batch_00149"
-  context_file: "../docs/mapp_project_00061/mapp_batch_00149/report/context.yml"
+  project_id: null
+  batch_id: null
+  context_file: null
   report_title: null
   report_subtitle: null
 ---
@@ -21,11 +21,36 @@ params:
 #| label: report-params
 #| parameters: true
 
-project_id = "mapp_project_00061"
-batch_id = "mapp_batch_00149"
-context_file = "../docs/mapp_project_00061/mapp_batch_00149/report/context.yml"
-report_title = None
-report_subtitle = None
+from pathlib import Path
+import yaml
+
+params = locals().get("params", {})
+
+answers = {}
+answers_path = Path("../.copier-answers.yml")
+if answers_path.exists():
+    try:
+        answers = yaml.safe_load(answers_path.read_text(encoding="utf-8")) or {}
+    except Exception:  # pragma: no cover - best effort fallback
+        answers = {}
+
+project_id = (
+    params.get("project_id")
+    or answers.get("recorded_mapp_project")
+    or answers.get("mapp_project")
+)
+batch_id = (
+    params.get("batch_id")
+    or answers.get("recorded_mapp_batch")
+    or answers.get("mapp_batch")
+)
+
+context_file = params.get("context_file")
+if not context_file and project_id and batch_id:
+    context_file = f"../docs/{project_id}/{batch_id}/report/context.yml"
+
+report_title = params.get("report_title")
+report_subtitle = params.get("report_subtitle")
 ```
 
 ```{python}
@@ -48,7 +73,12 @@ else:
     context = {}
     context_loaded = False
 
-report_title_value = report_title or f"{project_id} · {batch_id}"
+if not report_title:
+    title_parts = [part for part in (project_id, batch_id) if part]
+    report_title_value = " · ".join(title_parts) if title_parts else "Metabolomics Analysis Draft Report"
+else:
+    report_title_value = report_title
+
 report_subtitle_value = report_subtitle
 report_generated_at = (
     dt.datetime.now(dt.timezone.utc)
