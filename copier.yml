@@ -86,6 +86,11 @@ gnps_job_id:
   help: The GNPS job ID (optional).
   required: false
 
+stats_job_id:
+  type: str
+  help: The Job ID of the stats job to be used for automated report (optional).
+  required: false
+
 common_filename_pattern:
   type: str
   help: The common filename pattern for the files in the batch.
