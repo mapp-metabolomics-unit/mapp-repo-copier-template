@@ -30,6 +30,12 @@ repository_name:
     {% endif %}
   required: true
 
+short_description:
+  type: str
+  help: A short description of the repository.
+  default: MAPP metabolomics project repository
+  required: false
+
 github_username:
   type: str
   help: What is your GitHub username?
