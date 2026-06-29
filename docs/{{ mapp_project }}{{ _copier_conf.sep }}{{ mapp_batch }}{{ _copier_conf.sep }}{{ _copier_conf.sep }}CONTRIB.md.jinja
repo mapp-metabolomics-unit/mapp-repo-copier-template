@@ -4,14 +4,14 @@ For this we use https://github.com/mapp-metabolomics-unit/msfiles-selector
 Once you have cloned this repo you can run the following command to move the files (from the src dir)
 
 ```bash
-sg commons-users -c './copy_files.sh -i /mnt/bigdata/mapp/public/QE_HFX_unifr/converted -o /msdata/{{mapp_project}}/{{mapp_batch}} -p "{{common_filename_pattern}}"'
+sg commons-users -c './copy_files.sh -i /mnt/bigdata/mapp/public/QE_HFX_unifr/converted -o /media/nvme8tb/msdata/{{mapp_project}}/{{mapp_batch}} -p "{{common_filename_pattern}}"'
 ```
 
 ### Transfer the metadata to the msdata folder
 
 ```bash
 cd ./docs/{{mapp_project}}/{{mapp_batch}}/
-cp ./metadata/treated/{{mapp_batch}}_metadata.tsv /msdata/{{mapp_project}}/{{mapp_batch}}/{{mapp_batch}}_metadata.tsv
+cp ./metadata/treated/{{mapp_batch}}_metadata.tsv /media/nvme8tb/msdata/{{mapp_project}}/{{mapp_batch}}/{{mapp_batch}}_metadata.tsv
 ```
 
 And fill the mzbatch file with the paths to the files
@@ -19,13 +19,13 @@ And fill the mzbatch file with the paths to the files
 Navigate to the Mzmine results folder
 
 ```bash
-cd ./docs/{{mapp_project}}/{{mapp_batch}}/results/mzmine
+cd ./results/mzmine
 ```
 
 And proceed to awk black magic to update the mzmine xml file
 
 ```bash
-awk -v dir="/msdata/{{mapp_project}}/{{mapp_batch}}" '
+awk -v dir="/media/nvme8tb/msdata/{{mapp_project}}/{{mapp_batch}}" '
 BEGIN {
   cmd = "ls " dir "/*.mzML"
   while (cmd | getline file) {
