@@ -203,7 +203,9 @@ def summarise_mzmine(project_dir: Path, base_dir: Path) -> Dict:
     batch_files = sorted(mzmine_dir.glob("*.mzbatch"))
     if batch_files:
         data["batch_file"] = relpath(batch_files[0], base_dir)
-    quant_files = sorted(mzmine_dir.glob("*_quant.csv"))
+    quant_files = sorted(mzmine_dir.glob("*_full_feature_table.csv"))
+    if not quant_files:
+        quant_files = sorted(mzmine_dir.glob("*_quant.csv"))
     if quant_files:
         data["quant_table"] = relpath(quant_files[0], base_dir)
     mgf_entries = []

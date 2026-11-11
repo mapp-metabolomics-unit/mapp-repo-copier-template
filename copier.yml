@@ -1,4 +1,15 @@
 # copier.yml
+_exclude:
+  - copier.yaml
+  - copier.yml
+  - "~*"
+  - "*.py[co]"
+  - "__pycache__"
+  - ".git"
+  - ".DS_Store"
+  - ".svn"
+  - /CHANGELOG.md
+
 run_setup:
   # computed value to determine whether to prompt the setup questions
   type: bool
@@ -83,7 +94,7 @@ gap_filling:
 
 noise_level:
   type: float
-  help: "What is the noise level for the analysis?"
+  help: "MS1 centroid noise threshold and chromatogram minimum absolute height."
   default: 5E5
   required: true
 
