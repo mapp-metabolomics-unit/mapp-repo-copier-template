@@ -42,7 +42,7 @@
                     <parameter name="Noise level"/>
                     <parameter name="Minimum non-zero points">3</parameter>
                     <parameter name="Intensity calculation">Height</parameter>
-                    <parameter name="Smoothing" selected_item="none">
+                    <parameter name="Smoothing" selected_item="gaussian">
                         <module name="none"/>
                         <module name="gaussian">
                             <parameter name="Width (points)">5</parameter>
@@ -65,7 +65,7 @@
             </parameter>
             <parameter name="MS2 detector (Advanced)" selected="true" selected_item="Factor of lowest signal">
                 <module name="Factor of lowest signal">
-                    <parameter name="Noise factor">2.5</parameter>
+                    <parameter name="Noise factor">0.0</parameter>
                 </module>
                 <module name="Auto">
                     <parameter name="Noise level">1000.0</parameter>
@@ -80,7 +80,7 @@
                     <parameter name="Noise level"/>
                     <parameter name="Minimum non-zero points">3</parameter>
                     <parameter name="Intensity calculation">Height</parameter>
-                    <parameter name="Smoothing" selected_item="none">
+                    <parameter name="Smoothing" selected_item="gaussian">
                         <module name="none"/>
                         <module name="gaussian">
                             <parameter name="Width (points)">5</parameter>
@@ -129,16 +129,16 @@
             <parameter name="Spectrum type">ANY</parameter>
         </parameter>
         <parameter name="Scan types (IMS)">All scan types</parameter>
-        <parameter name="Denormalize fragment scans (traps)">false</parameter>
-        <parameter name="Mass detector" selected_item="Centroid">
+        <parameter name="Denormalize fragment scans (traps)">true</parameter>
+        <parameter name="Mass detector" selected_item="Factor of lowest signal">
             <module name="Factor of lowest signal">
-                <parameter name="Noise factor">5.0</parameter>
+                <parameter name="Noise factor">{{ noise_factor }}</parameter>
             </module>
             <module name="Auto">
                 <parameter name="Noise level">1000.0</parameter>
             </module>
             <module name="Centroid">
-                <parameter name="Noise level">{{ noise_level }}</parameter>
+                <parameter name="Noise level">0.0</parameter>
             </module>
             <module name="Exact mass">
                 <parameter name="Noise level"/>
@@ -147,7 +147,7 @@
                 <parameter name="Noise level"/>
                 <parameter name="Minimum non-zero points">3</parameter>
                 <parameter name="Intensity calculation">Height</parameter>
-                <parameter name="Smoothing" selected_item="none">
+                <parameter name="Smoothing" selected_item="gaussian">
                     <module name="none"/>
                     <module name="gaussian">
                         <parameter name="Width (points)">5</parameter>
@@ -185,10 +185,10 @@
             <parameter name="Spectrum type">ANY</parameter>
         </parameter>
         <parameter name="Scan types (IMS)">All scan types</parameter>
-        <parameter name="Denormalize fragment scans (traps)">false</parameter>
-        <parameter name="Mass detector" selected_item="Centroid">
+        <parameter name="Denormalize fragment scans (traps)">true</parameter>
+        <parameter name="Mass detector" selected_item="Factor of lowest signal">
             <module name="Factor of lowest signal">
-                <parameter name="Noise factor">2.5</parameter>
+                <parameter name="Noise factor">0.0</parameter>
             </module>
             <module name="Auto">
                 <parameter name="Noise level">1000.0</parameter>
@@ -203,7 +203,7 @@
                 <parameter name="Noise level"/>
                 <parameter name="Minimum non-zero points">3</parameter>
                 <parameter name="Intensity calculation">Height</parameter>
-                <parameter name="Smoothing" selected_item="none">
+                <parameter name="Smoothing" selected_item="gaussian">
                     <module name="none"/>
                     <module name="gaussian">
                         <parameter name="Width (points)">5</parameter>
@@ -234,18 +234,18 @@
             <parameter name="Scan number"/>
             <parameter name="Base Filtering Integer"/>
             <parameter name="Retention time">
-                <min>0.3</min>
-                <max>30.0</max>
+                <min>0.0</min>
+                <max>12.0</max>
             </parameter>
             <parameter name="Mobility"/>
             <parameter name="MS level filter" selected="MS1, level = 1">1</parameter>
             <parameter name="Scan definition"/>
-            <parameter name="Polarity">{% if ionization_mode == "positive" %}+{% else %}-{% endif %}</parameter>
+            <parameter name="Polarity">Any</parameter>
             <parameter name="Spectrum type">ANY</parameter>
         </parameter>
-        <parameter name="Minimum consecutive scans">6</parameter>
+        <parameter name="Minimum consecutive scans">8</parameter>
         <parameter name="Minimum intensity for consecutive scans">100000.0</parameter>
-        <parameter name="Minimum absolute height">{{ noise_level }}</parameter>
+        <parameter name="Minimum absolute height">500000.0</parameter>
         <parameter name="m/z tolerance (scan-to-scan)">
             <absolutetolerance>0.002</absolutetolerance>
             <ppmtolerance>10.0</ppmtolerance>
@@ -262,7 +262,7 @@
                 <parameter name="Mobility width (scans)" selected="false">5</parameter>
             </module>
             <module name="Savitzky Golay">
-                <parameter name="Retention time width (scans)" selected="true">7</parameter>
+                <parameter name="Retention time width (scans)" selected="true">9</parameter>
                 <parameter name="Mobility width (scans)" selected="false">5</parameter>
             </module>
         </parameter>
@@ -291,16 +291,16 @@
             </parameter>
         </parameter>
         <parameter name="Dimension">Retention time</parameter>
-        <parameter name="Chromatographic threshold">0.9</parameter>
+        <parameter name="Chromatographic threshold">0.85</parameter>
         <parameter name="Minimum search range RT/Mobility (absolute)">0.05</parameter>
         <parameter name="Minimum relative height">0.0</parameter>
-        <parameter name="Minimum absolute height">50000.0</parameter>
-        <parameter name="Min ratio of peak top/edge">2.0</parameter>
+        <parameter name="Minimum absolute height">100000.0</parameter>
+        <parameter name="Min ratio of peak top/edge">1.7</parameter>
         <parameter name="Peak duration range (min/mobility)">
-            <min>0.0</min>
+            <min>0.02</min>
             <max>1.51</max>
         </parameter>
-        <parameter name="Minimum scans (data points)">6</parameter>
+        <parameter name="Minimum scans (data points)">8</parameter>
     </batchstep>
     <batchstep method="io.github.mzmine.modules.dataprocessing.filter_isotopegrouper.IsotopeGrouperModule" module_name="13C isotope filter (formerly: isotope grouper)" parameter_version="1">
         <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
@@ -346,7 +346,7 @@
         <parameter name="Require same ID">false</parameter>
         <parameter name="Compare isotope pattern" selected="false">
             <parameter name="Isotope m/z tolerance">
-                <absolutetolerance>0.001</absolutetolerance>
+                <absolutetolerance>0.002</absolutetolerance>
                 <ppmtolerance>5.0</ppmtolerance>
             </parameter>
             <parameter name="Minimum absolute intensity">0.0</parameter>
@@ -373,9 +373,36 @@
         </parameter>
         <parameter name="Original feature list">KEEP</parameter>
     </batchstep>
+    {% if gap_filling %}
+    <batchstep method="io.github.mzmine.modules.dataprocessing.gapfill_peakfinder.multithreaded.MultiThreadPeakFinderModule" module_name="Feature finder (multithreaded)" parameter_version="1">
+        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
+        <parameter name="Name suffix">gaps</parameter>
+        <parameter name="Intensity tolerance">0.2</parameter>
+        <parameter name="m/z tolerance (sample-to-sample)">
+            <absolutetolerance>0.002</absolutetolerance>
+            <ppmtolerance>10.0</ppmtolerance>
+        </parameter>
+        <parameter name="Retention time tolerance" unit="MINUTES">0.1</parameter>
+        <parameter name="Minimum scans (data points)">4</parameter>
+        <parameter name="Original feature list">KEEP</parameter>
+    </batchstep>
+    {% endif %}
+    <batchstep method="io.github.mzmine.modules.dataprocessing.filter_duplicatefilter.DuplicateFilterModule" module_name="Duplicate peak filter" parameter_version="1">
+        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
+        <parameter name="Name suffix">dup</parameter>
+        <parameter name="Filter mode">NEW AVERAGE</parameter>
+        <parameter name="m/z tolerance">
+            <absolutetolerance>7.5E-4</absolutetolerance>
+            <ppmtolerance>1.5</ppmtolerance>
+        </parameter>
+        <parameter name="RT tolerance" unit="MINUTES">0.035</parameter>
+        <parameter name="Mobility tolerance" selected="false">1.0</parameter>
+        <parameter name="Require same identification">false</parameter>
+        <parameter name="Original feature list">KEEP</parameter>
+    </batchstep>
     <batchstep method="io.github.mzmine.modules.dataprocessing.filter_rowsfilter.RowsFilterModule" module_name="Feature list rows filter" parameter_version="3">
         <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
-        <parameter name="Name suffix">13C peak</parameter>
+        <parameter name="Name suffix">peak</parameter>
         <parameter name="Keep or remove rows">Keep rows that match all criteria</parameter>
         <parameter name="Original feature list">KEEP</parameter>
         <parameter name="Minimum aligned samples" selected="true">
@@ -414,7 +441,7 @@
             <parameter name="Fold-change filter">abs_both_sides</parameter>
         </parameter>
         <parameter name="Minimum signals in an isotope pattern" selected="true">2</parameter>
-        <parameter name="Validate 13C isotope pattern" selected="true">
+        <parameter name="Validate 13C isotope pattern" selected="false">
             <parameter name="m/z tolerance">
                 <absolutetolerance>0.0015</absolutetolerance>
                 <ppmtolerance>3.0</ppmtolerance>
@@ -465,34 +492,7 @@
         <parameter name="Require other detector correlation">false</parameter>
         <parameter name="Never remove rows with MS2">true</parameter>
         <parameter name="Never remove annotated rows">false</parameter>
-        <parameter name="Reset the row ID">false</parameter>
-    </batchstep>
-    {% if gap_filling %}
-    <batchstep method="io.github.mzmine.modules.dataprocessing.gapfill_peakfinder.multithreaded.MultiThreadPeakFinderModule" module_name="Feature finder (multithreaded)" parameter_version="1">
-        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
-        <parameter name="Name suffix">gaps</parameter>
-        <parameter name="Intensity tolerance">0.2</parameter>
-        <parameter name="m/z tolerance (sample-to-sample)">
-            <absolutetolerance>0.002</absolutetolerance>
-            <ppmtolerance>10.0</ppmtolerance>
-        </parameter>
-        <parameter name="Retention time tolerance" unit="MINUTES">0.1</parameter>
-        <parameter name="Minimum scans (data points)">3</parameter>
-        <parameter name="Original feature list">KEEP</parameter>
-    </batchstep>
-    {% endif %}
-    <batchstep method="io.github.mzmine.modules.dataprocessing.filter_duplicatefilter.DuplicateFilterModule" module_name="Duplicate peak filter" parameter_version="1">
-        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
-        <parameter name="Name suffix">dup</parameter>
-        <parameter name="Filter mode">NEW AVERAGE</parameter>
-        <parameter name="m/z tolerance">
-            <absolutetolerance>8.0E-4</absolutetolerance>
-            <ppmtolerance>1.5</ppmtolerance>
-        </parameter>
-        <parameter name="RT tolerance" unit="MINUTES">0.04</parameter>
-        <parameter name="Mobility tolerance" selected="false">1.0</parameter>
-        <parameter name="Require same identification">false</parameter>
-        <parameter name="Original feature list">KEEP</parameter>
+        <parameter name="Reset the row ID">true</parameter>
     </batchstep>
     <batchstep method="io.github.mzmine.modules.visualization.projectmetadata.io.ProjectMetadataExportModule" module_name="Project metadata export" parameter_version="1">
         <parameter name="Metadata file">
@@ -563,10 +563,10 @@
         <parameter name="Intensity normalization" scientific="true">no_normalization</parameter>
         <parameter name="Merge &amp; select fragment scans" selected_item="input_scans">
             <module name="simple_merged">
-                <parameter name="Presets">single_merged_scan</parameter>
+                <parameter name="Presets">representative_scans</parameter>
                 <parameter name="Merging m/z tolerance">
-                    <absolutetolerance>0.001</absolutetolerance>
-                    <ppmtolerance>5.0</ppmtolerance>
+                    <absolutetolerance>0.008</absolutetolerance>
+                    <ppmtolerance>25.0</ppmtolerance>
                 </parameter>
             </module>
             <module name="preset_merged">

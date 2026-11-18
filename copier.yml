@@ -92,10 +92,10 @@ gap_filling:
   default: true
   required: false
 
-noise_level:
+noise_factor:
   type: float
-  help: "MS1 centroid noise threshold and chromatogram minimum absolute height."
-  default: 5E5
+  help: "MS1 mass detection: factor of lowest signal (noise factor)."
+  default: 5.0
   required: true
 
 gnps_job_id:
